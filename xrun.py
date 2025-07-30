@@ -6,7 +6,7 @@ def bain():
         user="postgres",
         password="",
         host="localhost",
-        port="4998"
+        port=""
     )
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM bain")
@@ -21,7 +21,7 @@ def into(id, name, login, password):
         user="postgres",
         password="",
         host="localhost",
-        port="4998"
+        port=""
     )
     cursor = conn.cursor()
     cursor.execute("INSERT INTO bain VALUES (%s, %s, %s, %s)", (id, name, login, password))
@@ -31,11 +31,11 @@ def into(id, name, login, password):
 
 def delete(id):
     conn = psycopg2.connect(
-        dbname="lch",
+        dbname="",
         user="postgres",
-        password="Rus371m",
+        password="",
         host="localhost",
-        port="4998"
+        port=""
     )
     cur = conn.cursor()
     cur.execute("DELETE FROM bain WHERE id = %s", (id,))
