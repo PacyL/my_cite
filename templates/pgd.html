@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>пагода</title>
+    <style>
+        body {
+            background-color: #323232;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+       button {
+            padding: 10px 15px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #111;
+            
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #ccc;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;
+        padding: 20px; background-color: #444; border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        max-width: 600px; margin: auto;
+        color: white;">
+        <h1>Погода в вашем регионе</h1>
+        
+    
+    <p>Город: {{ name }}</p>
+    <p>Температура: {{ temp }}°C</p>
+    <p>ошушение: {{ oshu }} °C</p>
+    <form action="/pgd" method="post">
+        <button type="submit">Обновить</button>
+    </form>
+    </div>
+    
+</body>
+</html>

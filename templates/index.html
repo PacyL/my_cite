@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хранилище паролей</title>
+    <style>
+        body {
+            background-color: #323232;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #444;
+            color: white;
+        }
+        input[type="text"]::placeholder {
+            color: #aaa;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #111;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #555;
+            text-align: center;
+        }
+        th {
+            background-color: #2d2d2d;
+        }
+        td {
+            background-color: #2c2c2c;
+        }
+        tr:nth-child(even) {
+            background-color: #202020;
+        }
+        tr:hover td {
+            background-color: #444;
+        }
+        .secret {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="/add" method="post">
+        <input type="text" name="id" placeholder="ID" required>
+        <input type="text" name="name" placeholder="Название сайта" required>
+        <input type="text" name="login" placeholder="Логин" required>
+        <input type="text" name="password" placeholder="Пароль" required>
+        <button type="submit">+ Добавить</button>
+    </form>
+
+    <center><h1>Хранилище паролей</h1></center>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Сайт</th>
+                <th>Логин</th>
+                <th>Пароль</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in data %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+
+                <!-- ЛОГИН -->
+                <td>
+                    <span class="dots">••••••</span>
+                    <span class="real" style="display:none;">{{ user[2] }}</span>
+                    <button type="button" onclick="toggle(this)">👁</button>
+                </td>
+
+                <!-- ПАРОЛЬ -->
+                <td>
+                    <span class="dots">••••••••</span>
+                    <span class="real" style="display:none;">{{ user[3] }}</span>
+                    <button type="button" onclick="toggle(this)">👁</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function toggle(btn) {
+            const td = btn.parentElement;
+            const dots = td.querySelector(".dots");
+            const real = td.querySelector(".real");
+
+            const showing = real.style.display === "inline";
+            real.style.display = showing ? "none" : "inline";
+            dots.style.display = showing ? "inline" : "none";
+            btn.textContent = showing ? "👁" : "🙈";
+        }
+    </script>
+
+</body>
+</html>
